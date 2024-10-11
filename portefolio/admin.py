@@ -13,5 +13,5 @@ admin.site.register(contact)
 admin.site.register(landing)
 admin.site.register(catalog)
 admin.site.register(SocialLink)
-admin.site.register(Link_name)
+
 

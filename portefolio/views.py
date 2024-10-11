@@ -3,6 +3,7 @@ from .models import *
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings 
+from django.http import FileResponse, Http404
 
 # Create your views here.
 
@@ -17,7 +18,7 @@ def index(request):
     contac = get_object_or_404(contact, id=1)
     land = landing.objects.all()
     catal = catalog.objects.all()
-    socialink = Link_name.objects.all()
+    socialinks = SocialLink.objects.all()
 
     datas = {
         'about' :about,
@@ -30,7 +31,7 @@ def index(request):
         'contac' : contac,
         'land' : land,
         'catal' : catal,
-        'socialink' : socialink,
+        'socialinks' : socialinks,
 
      }
     return render(request, 'index.html', datas)
@@ -41,26 +42,13 @@ def singleblog(request, blog_id):
     return render(request, 'single.html', {'le_blog':le_blog} )
 
 
-
-#     from django.http import FileResponse, Http404
-# from django.shortcuts import get_object_or_404
-# from .models import YourModel  # Remplacez par votre modèle
-
-# def download_cv(request, item_id):
-#     item = get_object_or_404(YourModel, id=item_id)
-#     file_path = item.cv.path  # Chemin du fichier
-#     try:
-#         return FileResponse(open(file_path, 'rb'), as_attachment=True, filename=item.cv.name)
-#     except FileNotFoundError:
-#         raise Http404("File not found")
-
-# from django.urls import path
-# from .views import download_cv
-
-# urlpatterns = [
-#     path('download-cv/<int:item_id>/', download_cv, name='download_cv'),
-# ]
-# <a href="{% url 'download_cv' item.id %}" class="btn btn-primary py-3 px-3">Download CV</a>
+def download_cv(request, item_id):
+    item = get_object_or_404(about_me, id=item_id)
+    file_path = item.cv.path
+    try:
+        return FileResponse(open(file_path, 'rb'), as_attachment=True, filename=item.cv.name)
+    except FileNotFoundError:
+        raise Http404("File not found")
 
 
 def send_contact(request):

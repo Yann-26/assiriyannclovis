@@ -4,8 +4,10 @@
 <html lang="en">
   <head>
     {% for about in about %}
+    
     <title>{{about.name}}</title>
     {% endfor %}
+    <link rel="icon" type="image/x-icon" href="{% static '/images/favicon.ico' %}">
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -130,12 +132,7 @@
                       class="btn btn-primary py-3 px-4"
                       >my cv in french</a
                     >
-                    <a
-                      href="#"
-                      class="btn btn-white btn-outline-white py-3 px-4"
-                      >My works</a
-                    >
-                  </p>
+                   
                 </div>
               </div>
             </div>
@@ -172,11 +169,7 @@
                       class="btn btn-primary py-3 px-4"
                       >my cv in french</a
                     >
-                    <a
-                      href="#"
-                      class="btn btn-white btn-outline-white py-3 px-4"
-                      >My works</a
-                    >
+                    
                   </p>
                 </div>
               </div>
@@ -235,7 +228,7 @@
                   <span>Project complete</span>
                 </p> -->
                 <p>
-                  <a href="{{item.cv}}" class="btn btn-primary py-3 px-3"
+                  <a href="{% url 'download_cv' item.id %}" class="btn btn-primary py-3 px-3"
                     >Download CV</a
                   >
                 </p>
@@ -271,7 +264,10 @@
 
         <div class="row justify-content-center mt-5">
           <div class="col-md-6 text-center ftco-animate">
-            <p><a href="#" class="btn btn-primary py-4 px-5">Download CV</a></p>
+                      {% for item in about %}
+            <p><a href="{% url 'download_cv' item.id %}" class="btn btn-primary py-4 px-5">Download CV</a></p>
+          {% endfor %}
+          
           </div>
         </div>
       </div>
@@ -284,8 +280,7 @@
             <h1 class="big big-2">Services</h1>
             <h2 class="mb-4">Services</h2>
             <p>
-              Far far away, behind the word mountains, far from the countries
-              Vokalia and Consonantia
+              Do not hesitate to contact me for my services!
             </p>
           </div>
         </div>
@@ -314,8 +309,7 @@
             <h1 class="big big-2">Skills</h1>
             <h2 class="mb-4">My Skills</h2>
             <p>
-              Far far away, behind the word mountains, far from the countries
-              Vokalia and Consonantia
+            Let me show you all my skills !
             </p>
           </div>
         </div>
@@ -351,8 +345,7 @@
             <h1 class="big big-2">Catalog</h1>
             <h2 class="mb-4">Catalog</h2>
             <p>
-              Far far away, behind the word mountains, far from the countries
-              Vokalia and Consonantia
+            Learn my history !
             </p>
           </div>
         </div>
@@ -397,8 +390,7 @@
             <h1 class="big big-2">Blog</h1>
             <h2 class="mb-4">My Blog</h2>
             <p>
-              Far far away, behind the word mountains, far from the countries
-              Vokalia and Consonantia
+            Discover some  of my thoughts and experiences.
             </p>
           </div>
         </div>
@@ -522,8 +514,7 @@
             <h1 class="big big-2">Contact</h1>
             <h2 class="mb-4">Contact Me</h2>
             <p>
-              Far far away, behind the word mountains, far from the countries
-              Vokalia and Consonantia
+          How  to reach me ?
             </p>
           </div>
         </div>
@@ -641,18 +632,11 @@
               <ul
                 class="ftco-footer-social list-unstyled float-md-center float-center mt-5"
               >
+              {% for social in socialinks %}
                 <li class="ftco-animate">
-                  <a href="#"><span class="icon-twitter"></span></a>
+                 <span> <a href="{{social.link}}" class="icon-{{social.name}}"></span></a>
                 </li>
-                <li class="ftco-animate">
-                  <a href="#"><span class="icon-facebook"></span></a>
-                </li>
-                <li class="ftco-animate">
-                  <a href="#"><span class="icon-instagram"></span></a>
-                </li>
-                 <li class="ftco-animate">
-                  <a href="#"><span class="icon-instagram"></span></a>
-                </li>
+              {% endfor %}
               </ul>
             </div>
           </div>
@@ -661,7 +645,6 @@
         <div class="row">
           <div class="col-md-12 text-center">
             <p>
-            
               Copyright &copy;
               <script>
                 document.write(new Date().getFullYear());

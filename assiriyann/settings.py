@@ -91,7 +91,7 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] = dj_database_url.parse('postgresql://assiri_yann_django_user:cgf0zinljEUZzMrxRXyE3iZZVUWIlK55@dpg-cs4irj5svqrc738d5180-a.oregon-postgres.render.com/assiri_yann_django')
+# DATABASES['default'] = dj_database_url.parse('postgresql://assiri_yann_django_user:cgf0zinljEUZzMrxRXyE3iZZVUWIlK55@dpg-cs4irj5svqrc738d5180-a.oregon-postgres.render.com/assiri_yann_django')
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

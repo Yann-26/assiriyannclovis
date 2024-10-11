@@ -1,0 +1,1 @@
+web: gunicorn assiriyann.wsgi --log-file -

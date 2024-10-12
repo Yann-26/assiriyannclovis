@@ -39,6 +39,7 @@
     <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" />
     <link rel="stylesheet" href="{% static 'css/icomoon.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.scss' %}" />
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
     <nav
@@ -125,14 +126,7 @@
                   <span class="subheading">Hello!</span>
                   <h1 class="mb-4 mt-3">I'm <span>Yann Clovis Assiri</span></h1>
                   <h2 class="mb-4">A Freelance developer</h2>
-                  <h2 class="mb-4">Ivoirian people</h2>
-                  <p>
-                    <a
-                      href="https://bold.pro/my/yannclovis-assiri"
-                      class="btn btn-primary py-3 px-4"
-                      >my cv in french</a
-                    >
-                   
+                  <h2 class="mb-4">From Ivoiry Coast</h2>     
                 </div>
               </div>
             </div>
@@ -163,14 +157,6 @@
                   <h1 class="mb-4 mt-3">
                     I'm a <span>Computer Science </span> student in India
                   </h1>
-                  <p>
-                    <a
-                      href="https://bold.pro/my/yannclovis-assiri"
-                      class="btn btn-primary py-3 px-4"
-                      >my cv in french</a
-                    >
-                    
-                  </p>
                 </div>
               </div>
             </div>
@@ -383,6 +369,7 @@
       </div>
     </section>
 
+    {% for  item in blogg %}
     <section class="ftco-section" id="blog-section">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
@@ -394,7 +381,6 @@
             </p>
           </div>
         </div>
-        {% for  item in blogg %}
         <div class="row d-flex">
           <div class="col-md-4 d-flex ftco-animate">
             <div class="blog-entry justify-content-end">
@@ -426,11 +412,11 @@
             </div>
           </div>
         </div>
-          {% endfor %}
       </div>
     </section>
+    {% endfor %}
 
-    <section
+    <!-- <section
       class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img"
       id="section-counter"
     >
@@ -478,7 +464,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <section
       class="ftco-section ftco-hireme img margin-top"
@@ -488,10 +474,7 @@
         <div class="row justify-content-center">
           <div class="col-md-7 ftco-animate text-center">
             <h2>I'm <span>Available</span> for freelancing</h2>
-            <p>
-              Computer science: Alliance of inexact science and fallible human
-              activity.
-            </p>
+            
             <p class="mb-0">
               <a
                 href="https://bold.pro/my/yannclovis-assiri"
@@ -499,6 +482,7 @@
                 >my cv in french</a
               >
             </p>
+            
           </div>
         </div>
       </div>
@@ -540,11 +524,19 @@
               </div>
               <h3 class="mb-4">Contact Number</h3>
               <p>
-                <a href="tel://+225{{item.contact_number}}"
+                <div class="link_wrapper">
+                <a class="a" href="tel://+91{{item.contact_number}}"
                   >{{contac.contact_number}}</a
                 >
+                 <div class="icons">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
+        <path d="M265.17 125.577l-80-80c-4.88-4.88-12.796-4.88-17.677 0-4.882 4.882-4.882 12.796 0 17.678l58.66 58.66H12.5c-6.903 0-12.5 5.598-12.5 12.5 0 6.903 5.597 12.5 12.5 12.5h213.654l-58.66 58.662c-4.88 4.882-4.88 12.796 0 17.678 2.44 2.44 5.64 3.66 8.84 3.66s6.398-1.22 8.84-3.66l79.997-80c4.883-4.882 4.883-12.796 0-17.678z"/>
+      </svg>
+    </div>
+    </div>
               </p>
             </div>
+            
           </div>
           <div class="col-md-6 col-lg-3 d-flex ftco-animate">
             <div class="align-self-stretch box p-4 text-center">
@@ -555,8 +547,31 @@
               </div>
               <h3 class="mb-4">Email Address</h3>
               <p>
-                <a href="mailto:{{item.mon_email}}">{{contac.mon_email}}</a>
-              </p>
+               <div class="wrapper"></div>
+  <div class="link_wrapper">
+    <a class="a" href="mailto:{{item.mon_email}}">{{contac.mon_email}}</a>
+    <div class="icons">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
+        <path d="M265.17 125.577l-80-80c-4.88-4.88-12.796-4.88-17.677 0-4.882 4.882-4.882 12.796 0 17.678l58.66 58.66H12.5c-6.903 0-12.5 5.598-12.5 12.5 0 6.903 5.597 12.5 12.5 12.5h213.654l-58.66 58.662c-4.88 4.882-4.88 12.796 0 17.678 2.44 2.44 5.64 3.66 8.84 3.66s6.398-1.22 8.84-3.66l79.997-80c4.883-4.882 4.883-12.796 0-17.678z"/>
+      </svg>
+    </div>
+  </div>
+  
+</div>
+
+</p>
+</div>
+<div class="col-md-6 col-lg-3 d-flex ftco-animate">
+            <div class="align-self-stretch box p-4 text-center">
+              <div
+                class="icon d-flex align-items-center justify-content-center"
+              >
+                <span class="icon-map-signs"></span>
+              </div>
+              <h3 class="mb-4">Address</h3>
+              <p>{{contac.address}}</p>
+            </div>
+          </div>
             </div>
           </div>
         </div>
@@ -630,18 +645,25 @@
             <div class="ftco-footer-widget mb-4">
             
               <ul
-                class="ftco-footer-social list-unstyled float-md-center float-center mt-5"
+                class="social-icons ftco-footer-social list-unstyled float-md-center float-center mt-5"
               >
               {% for social in socialinks %}
                 <li class="ftco-animate">
-                 <span> <a href="{{social.link}}" class="icon-{{social.name}}"></span></a>
+                 <a href="{{social.link}}" class="icon-{{social.name}}"></a>
                 </li>
-              {% endfor %}
               
+              {% endfor %}
               </ul>
             </div>
           </div>
          
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <div class="wrap" id="thewrap">
+            <button class="button" id="thebtn">You are the {{visitor_rank}}th visitor!</a>
+       </div>
+          </div>
         </div>
         <div class="row">
           <div class="col-md-12 text-center">
@@ -683,7 +705,6 @@
         />
       </svg>
     </div>
-
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>

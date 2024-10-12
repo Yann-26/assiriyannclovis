@@ -51,7 +51,9 @@ body {
   line-height: 1.5;
   color: #202b35;
   text-align: left;
-  background-color: #fff; }
+  background-color: #fff;
+  scroll-behavior: smooth;
+}
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -8148,7 +8150,6 @@ a {
     text-decoration: none;
     color: #ffbd39;
     outline: none !important; }
-
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
   line-height: 1.5;
@@ -9074,9 +9075,9 @@ textarea.form-control {
   background: #3c312e; }
 
 .ftco-footer {
-  font-size: 16px;
-  background: #000000;
-  padding: 7em 0;
+  font-size: 14px;
+  background: #5a6163;
+  padding: 5em 0;
   z-index: 0; }
   .ftco-footer .ftco-footer-logo {
     text-transform: uppercase;
@@ -9676,3 +9677,199 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+    /* hhhh */
+.wrapper{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.link_wrapper{
+  position: relative;
+}
+
+.a{
+  display: block;
+  height: 50px;
+  width: 250px;
+  line-height: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 15px;
+  background: #5f7e8a;
+  text-align: center;
+  color: #fff;
+  border: 3px solid #5f7e8a;
+  transition: all .35s;
+}
+
+.icons{
+  width: 50px;
+  height: 50px;
+  border: 3px solid transparent;
+  position: absolute;
+  transform: rotate(45deg);
+  right: 0;
+  top: 0;
+  z-index: -1;
+  transition: all .35s;
+}
+
+.icons svg{
+  width: 20px;
+  position: absolute;
+  top: calc(50% - 15px);
+  left: calc(50% - 15px);
+  transform: rotate(-45deg);
+  fill: #2eaccc;
+  transition: all .35s;
+}
+
+.a:hover{
+  width: 200px;
+  border: 3px solid #2eaccc;
+  font-size: xx-small;
+  background: transparent;
+  color: #2eaccc;
+}
+
+.a:hover + .icons{
+  border: 3px solid #2eaccc;
+  right: -25%;
+}
+
+/* visitor */
+#thewrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#thebtn {
+  min-width: 300px;
+  min-height: 60px;
+  display: inline-flex;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #313133;
+  background: #4FD1C5;
+  background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px rgba(79,209,197,.64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+  }
+
+#thebtn::before {
+content: '';
+  border-radius: 1000px;
+  min-width: calc(300px + 12px);
+  min-height: calc(60px + 12px);
+  border: 6px solid #00FFCB;
+  box-shadow: 0 0 60px rgba(0,255,203,.64);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all .3s ease-in-out 0s;
+}
+
+#thebtn:hover, 
+#thebtn:focus {
+  color: #313133;
+  transform: translateY(-6px);
+}
+
+#thebtn:hover::before, 
+#thebtn:focus::before {
+  opacity: 1;
+}
+
+#thebtn::after {
+  content: '';
+  width: 30px; height: 30px;
+  border-radius: 100%;
+  border: 6px solid #00FFCB;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}
+
+#thebtn:hover::after, 
+#thebtn:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+/*  */
+/* Style de base pour la liste */
+    ul.social-icons {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    /* Style pour chaque élément de la liste */
+    ul.social-icons li {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    /* Style de base pour les liens */
+    ul.social-icons li a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #d463e0;
+      color: white;
+      font-size: 24px;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+  
+    /* Animation lors du survol */
+    ul.social-icons li a:hover {
+      background-color: #333;
+      transform: scale(1.1) rotate(10deg);
+    }
+
+    /* Animation de vibration */
+    ul.social-icons li:hover {
+      transform: translateY(-5px);
+    }

@@ -163,6 +163,12 @@ class SocialLink(models.Model):
     def __str__(self) :
         return self.name
 
+class VisitorCounter(models.Model):
+    total_visitors = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"Total Visitors: {self.total_visitors}"
+
 
 
 

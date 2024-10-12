@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compteur de Visiteurs</title>
+</head>
+<body style="text-align: center; margin-top: 20vh; font-family: Arial, sans-serif;">
+  <h1 id="message"></h1>
+
+  <script>
+    // Clé utilisée dans localStorage pour identifier les visiteurs
+    const VISITOR_KEY = 'isReturningVisitor';
+    const TOTAL_VISITS_KEY = 'totalVisitors';
+
+    // Fonction pour récupérer ou initialiser le compteur de visiteurs
+    function getTotalVisitors() {
+      return parseInt(localStorage.getItem(TOTAL_VISITS_KEY)) || 0;
+    }
+
+    // Fonction pour afficher un message dans un popup
+    function displayVisitorMessage(visitorNumber) {
+      const message = `Vous êtes le ${visitorNumber}-ième visiteur !`;
+      alert(message); // Affiche le message dans un popup
+    }
+
+    // Vérifie si l'utilisateur est déjà venu
+    const isReturningVisitor = localStorage.getItem(VISITOR_KEY);
+
+    if (!isReturningVisitor) {
+      // Nouveau visiteur : on incrémente le compteur et enregistre sa visite
+      const newTotal = getTotalVisitors() + 1;
+      localStorage.setItem(TOTAL_VISITS_KEY, newTotal);
+      localStorage.setItem(VISITOR_KEY, 'true'); // Marquer l'utilisateur comme "déjà venu"
+      displayVisitorMessage(newTotal);
+    } else {
+      // Visiteur déjà compté : on affiche juste le total actuel
+      displayVisitorMessage(getTotalVisitors());
+    }
+  </script>
+</body>
+</html>

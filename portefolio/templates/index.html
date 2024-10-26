@@ -42,10 +42,11 @@
     <link rel="stylesheet" href="{% static 'css/style.scss' %}" />
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-    <nav
-      class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target"
-      id="ftco-navbar"
-    >
+   <nav
+  class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target fixed-top"
+  id="ftco-navbar"
+>
+
       <div class="container">
         <a class="navbar-brand" href="{% url 'index' %}">Yann</a>
         <button
@@ -96,11 +97,22 @@
         </div>
       </div>
     </nav>
-    {% if message in messages %}
+    {% for message in messages %}
     <div class="message">
+
+      {%  if message.level == 'ERROR' %}
+      <div class="alert  alert-error" role="alert">
       <li>{{message}}</li>
+      </div>
+      {% endif %}
+      {% if message.label == 'success' %}
+      <div class="alert  alert-success" role="alert">
+        <li>{{message}}</li>
+      </div>
+      {% endif %}
     </div>
-    {% endif %}
+    {% endfor %}
+
     <section id="home-section" class="hero">
       <div class="home-slider owl-carousel">
         <div class="slider-item">
@@ -143,7 +155,7 @@
               <div
                 class="one-third js-fullheight order-md-last img"
                 style="
-                  background-image: url(static/images/IMG_20240731_063452-removebg-preview.png);
+                  background-image: url(static/images/IMG_20240104_122814-removebg.png);
                 "
               >
                 <div class="overlay"></div>
@@ -153,10 +165,10 @@
                 data-scrollax=" properties: { translateY: '70%' }"
               >
                 <div class="text">
-                  <span class="subheading">Hello!</span>
                   <h1 class="mb-4 mt-3">
-                    I'm a <span>Computer Science </span> student in India
-                  </h1>
+                    I'm in <span>Master of Technologie </span>
+                   </h1>
+                  <h2 class="mb-4"> Computer Science Engineering</h2>
                 </div>
               </div>
             </div>
@@ -165,6 +177,7 @@
       </div>
     </section>
 
+ 
     <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
       <div class="container">
         <div class="row d-flex">
@@ -215,7 +228,7 @@
                 </p> -->
                 <p>
                   <a href="{% url 'download_cv' item.id %}" class="btn btn-primary py-3 px-3"
-                    >Download CV</a
+                    >My resume</a
                   >
                 </p>
                 {% endfor %}
@@ -251,7 +264,7 @@
         <div class="row justify-content-center mt-5">
           <div class="col-md-6 text-center ftco-animate">
                       {% for item in about %}
-            <p><a href="{% url 'download_cv' item.id %}" class="btn btn-primary py-4 px-5">Download CV</a></p>
+            <p><a href="https://bold.pro/my/yannclovis-assiri" class="btn btn-primary py-4 px-5">My resume in detail</a></p>
           {% endfor %}
           
           </div>
@@ -466,27 +479,26 @@
       </div>
     </section> -->
 
-    <section
-      class="ftco-section ftco-hireme img margin-top"
-      style="background-image: url(static/images/0F7A1178.jpg)"
-    >
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-7 ftco-animate text-center">
-            <h2>I'm <span>Available</span> for freelancing</h2>
-            
-            <p class="mb-0">
-              <a
-                href="https://bold.pro/my/yannclovis-assiri"
-                class="btn btn-primary py-3 px-5"
-                >my cv in french</a
-              >
-            </p>
-            
-          </div>
-        </div>
+<section
+  class="ftco-section ftco-hireme img margin-top"
+  style="background-image: url(static/images/0F7A1178.jpg);"
+>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-7 ftco-animate text-center">
+        <h2>I'm <span>Available</span> for freelancing</h2>
+        <!-- <p class="mb-0">
+          <a
+            href="https://bold.pro/my/yannclovis-assiri"
+            class="btn btn-primary py-3 px-5" 
+            target="_blank">
+            My resume in Detail
+          </a>
+        </p> -->
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
     <section
       class="ftco-section contact-section ftco-no-pb"
@@ -525,7 +537,7 @@
               <h3 class="mb-4">Contact Number</h3>
               <p>
                 <div class="link_wrapper">
-                <a class="a" href="tel://+91{{item.contact_number}}"
+                <a class="a" href="tel:+91{{contac.contact_number}}"
                   >{{contac.contact_number}}</a
                 >
                  <div class="icons">
@@ -549,7 +561,7 @@
               <p>
                <div class="wrapper"></div>
   <div class="link_wrapper">
-    <a class="a" href="mailto:{{item.mon_email}}">{{contac.mon_email}}</a>
+    <a class="a" href="mailto:{{contac.mon_email}}">{{contac.mon_email}}</a>
     <div class="icons">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
         <path d="M265.17 125.577l-80-80c-4.88-4.88-12.796-4.88-17.677 0-4.882 4.882-4.882 12.796 0 17.678l58.66 58.66H12.5c-6.903 0-12.5 5.598-12.5 12.5 0 6.903 5.597 12.5 12.5 12.5h213.654l-58.66 58.662c-4.88 4.882-4.88 12.796 0 17.678 2.44 2.44 5.64 3.66 8.84 3.66s6.398-1.22 8.84-3.66l79.997-80c4.883-4.882 4.883-12.796 0-17.678z"/>
@@ -631,7 +643,7 @@
           <div class="col-md-6 d-flex">
             <div
               class="img"
-              style="background-image: url(static/images/moi.jpg)"
+              style="background-image: url(static/images/a.jpg)"
             ></div>
           </div>
         </div>
@@ -719,5 +731,19 @@
     <script src="{% static 'js/scrollax.min.js' %}"></script>
 
     <script src="{% static 'js/main.js' %}"></script>
+    <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+    var navCollapse = document.getElementById("ftco-nav");
+
+    navLinks.forEach(function (link) {
+      link.addEventListener("click", function () {
+        navCollapse.classList.remove("show");
+      });
+    });
+  });
+</script>
+
+
   </body>
 </html>

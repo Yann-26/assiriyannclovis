@@ -87,10 +87,11 @@ def send_contact(request):
         send_mail(
             subject,  
             full_message, 
-            settings.EMAIL_HOST_USER, 
-            [email], 
+            settings.FROM_EMAIL, 
+            [settings.EMAIL_HOST_USER], 
             fail_silently=False,
         )
 
         messages.success(request, 'Votre message a été envoyé avec succès')
+        messages.success(request, 'Your message has been sent successfully !')
         return redirect('/')

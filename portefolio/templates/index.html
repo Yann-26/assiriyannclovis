@@ -18,6 +18,8 @@
       href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 
     <link
       rel="stylesheet"
@@ -665,7 +667,83 @@
                   class="btn btn-primary py-3 px-5"
                 />
               </div>
+              
             </form>
+               <!-- Modal Structure -->
+<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="messageModalLabel">Message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul class="messages">
+          {% for message in messages %}
+            <li class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Loading Modal -->
+<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="background: transparent; border: none;">
+      <div class="modal-body text-center">
+        <div class="spinner-border text-warning" role="status" style="width: 3rem; height: 3rem;">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <h5 style="color: white;">Please wait / Veuillez patienter...</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Sélectionner le formulaire
+    const form = document.querySelector('form');
+
+    // Ajouter un écouteur d'événement de soumission au formulaire
+    form.addEventListener('submit', function(event) {
+      // Empêche l'utilisateur de soumettre plusieurs fois (désactiver le bouton)
+      const submitButton = form.querySelector('[type="submit"]');
+      submitButton.disabled = true;
+
+      // Affiche la boîte de dialogue de chargement
+      $('#loadingModal').modal('show');
+
+      // Définir un délai de 20 secondes pour masquer le modal de chargement
+      setTimeout(() => {
+        // Masquer le modal de chargement après 10 secondes
+        $('#loadingModal').modal('hide');
+        // Vérifier et afficher les messages s'il y en a
+        checkAndShowMessageModal();
+      }, 10000);
+    });
+
+    // Fonction pour vérifier les messages après la soumission
+    function checkAndShowMessageModal() {
+      const messagesList = document.querySelector(".messages");
+      if (messagesList && messagesList.children.length > 0) {
+        // Affiche le modal de messages
+        $('#messageModal').modal('show');
+      }
+    }
+
+    // Vérification après chargement complet de la page pour les messages existants
+    window.addEventListener('load', checkAndShowMessageModal);
+  });
+</script>
+
+
           </div>
     
 

@@ -11,6 +11,7 @@ class about_me(models.Model):
     phone_number = models.CharField(max_length=50)
     cv =  models.FileField(upload_to='cv/')
     cellphone =  models.CharField(max_length=50)
+    description = models.TextField()
 
     # STANDARDS 
     status  = models.BooleanField(default=True)
@@ -67,6 +68,7 @@ class skill(models.Model):
 class project(models.Model):
     project_name = models.CharField(max_length=50)
     image =models.ImageField(upload_to='projects/')
+    date_issue = models.DateField()
   
 
      # STANDARDS 

@@ -1,70 +1,36 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% for about in about %}
-    
+
     <title>{{about.name}}</title>
     {% endfor %}
-    <link rel="icon" type="image/x-icon" href="{% static '/images/favicon.ico' %}">
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static '/images/favicon.ico' %}"
     />
 
     <link
-      href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900"
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-
     <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap"
       rel="stylesheet"
-      href="{% static 'css/open-iconic-bootstrap.min.css' %}"
     />
-    <link rel="stylesheet" href="{% static 'css/animate.css' %}" />
-
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" />
-    <link
-      rel="stylesheet"
-      href="{% static 'css/owl.theme.default.min.css' %}"
-    />
-    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" />
-
-    <link rel="stylesheet" href="{% static 'css/aos.css' %}" />
-
-    <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}" />
-
-    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/icomoon.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/style.scss' %}" />
   </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-   <nav
-  class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target fixed-top"
-  id="ftco-navbar"
->
-
+  <body>
+    <!-- Header & Navigation -->
+    <header>
       <div class="container">
-        <a class="navbar-brand" href="{% url 'index' %}">Yann</a>
-        <button
-          class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle"
-          type="button"
-          data-toggle="collapse"
-          data-target="#ftco-nav"
-          aria-controls="ftco-nav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="oi oi-menu"></span> Menu
-        </button>
-
-        <div class="collapse navbar-collapse" id="ftco-nav">
-          <ul class="navbar-nav nav ml-auto">
+        <nav class="navbar">
+          <a href="#" class="logo">Yann Clovis Assiri<span></span></a>
+          <ul class="nav-menu">
             <li class="nav-item">
               <a href="#home-section" class="nav-link"><span>Home</span></a>
             </li>
@@ -96,408 +62,158 @@
               >
             </li>
           </ul>
+          <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home-section">
+      <div class="container">
+        <div class="home-content">
+          <h1>
+            Hi, I'm Yann Assiri<br />
+            <span>Software Engineer</span>
+          </h1>
+          <p>
+            I design and develop exceptional digital experiences that make
+            everyday life simpler.
+          </p>
+          <div class="home-btns">
+            <a href="#projects-section" class="btn">View My Work</a>
+            <a href="#contact-section" class="btn">Contact Me</a>
+          </div>
         </div>
       </div>
-    </nav>
-    <section class="creative-hero--section" id="home-section">
-        <div class="bg bg-image" style="background-image: url(static/images/photo_2024-11-05_04-28-54.jpg);"></div>
-        <div class="bg-overlay"></div>
-        <div class="auto-container">
-            <div class="content-box">
-                <span class="hero-subtitle">Welcome to my website</span>
+      <svg class="home-bg" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path d="M0,0 L100,0 L100,100 Z" fill="#f8fafc"></path>
+      </svg>
+    </section>
 
-                <h1 class="hero-title">Freelance developer</h1>
-                <div class="hero-desc">
-                  That's a pleasure for me to meet you.
-
+    <!-- About Section -->
+    <section id="about-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>About Me</h2>
+        </div>
+        <div class="about-content">
+          <div class="about-img">
+            <img src="static/images/mee.jpg" alt="Yann Clovis" />
+          </div>
+          {% for about in about %}
+          <div class="about-text">
+            <h3>Software Engineer & Web/mobile Developer</h3>
+            <p>{{about.description}}</p>
+            <div class="about-info">
+              <div class="info-item">
+                <i class="fas fa-user"></i>
+                <div>
+                  <strong>Name:</strong>
+                  <p>{{about.name}}</p>
                 </div>
-                
-            </div>
-        </div>
-    </section>
-    <style>
-      /* ============ HERO SECTION ============= */
-.creative-hero--section{
-	position: relative;
-	overflow: hidden;
-	height: 765px;
-}
-.creative-hero--section .bg {
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	background-repeat: no-repeat;
-	background-position: 50%;
-	background-size: cover;
-}
-.creative-hero--section .bg-overlay {
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	background-image: url(https://imgpanda.com/upload/ib/rn73B7bqty.png);
-	background-position: 0 0;
-	background-size: 56.5% 100%;
-	background-repeat: no-repeat;
-	animation: fadeIn 0.5s ease-in-out 0.3s forwards;
-}
-.auto-container {
-	max-width: 1310px;
-}
-
-.auto-container {
-	position: static;
-	padding: 0 15px;
-	margin: 0 auto;
-	width: 100%;
-	height: 100%;
-}
-.creative-hero--section .content-box {
-	position: relative;
-	max-width: 540px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	height: 100%;
-	animation: fadeInUp 1s ease-in-out 0.6s forwards;
-}
-.creative-hero--section .content-box .hero-subtitle {
-	display: block;
-	font-size: 16px;
-	line-height: 22px;
-	color: #fff;
-	font-weight: 700;
-	letter-spacing: .8px;
-	margin-bottom: 33px;
-	opacity: 0;
-	animation: fadeInUp 0.6s ease-in-out 0.6s forwards;
-}
-.creative-hero--section .content-box .hero-title {
-	color: #fff;
-	line-height: 1.1em;
-	letter-spacing: -3px;
-	text-transform: capitalize;
-	margin-bottom: 28px;
-	font-size: 75px;
-	font-weight: 600;
-	opacity: 0;
-	animation: fadeInUp 0.6s ease-in-out 0.9s forwards;
-}
-.creative-hero--section .content-box .hero-desc {
-	color: #fff;
-	margin-bottom: 40px;
-	font-size: 16px;
-	font-weight: 400;
-	line-height: 32px;
-	opacity: 0;
-	animation: fadeInUp 0.6s ease-in-out 1.2s forwards;
-}
-.content-box .btn-box{
-	opacity: 0;
-	animation: fadeInUp 0.6s ease-in-out 1.6s forwards;
-}
-.content-box .btn-box .hero-cta {
-	position: relative;
-	font-size: 16px;
-	line-height: 24px;
-	padding: 20px 40px;
-	font-weight: 600;
-	overflow: hidden;
-	color: #fff;
-	background: #134cb3;
-	letter-spacing: .8px;
-	border-radius: 7px;
-	text-decoration: none;
-	display: inline-flex;
-	justify-content: center;
-	text-align: center;
-	white-space: nowrap;
-	transition: all .3s ease;
-}
-
-.content-box .btn-box .hero-cta:before {
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	content: "";
-	border-radius: 7px;
-	transform: scaleX(0);
-	transform-origin: top right;
-	transition: transform .5s cubic-bezier(.86, 0, .07, 1);
-	background-color: #fff;
-}
-
-.content-box .btn-box .hero-cta:hover {
-	box-shadow: 0 10px 30px rgba(0, 0, 0, .1);
-	color: #16243e;
-}
-
-.content-box .btn-box .hero-cta:hover:before {
-	transform: scaleX(1);
-	transform-origin: bottom left;
-}
-
-.btn-box .hero-cta .cta-title{
-	position: relative;
-	display: flex;
-	align-items: center;
-}
-.btn-box .hero-cta .cta-title i{
-	position: relative;
-	display: block;
-	margin-left: 10px;
-}
-
-    </style>
- 
-    <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
-      <div class="container">
-        <div class="row d-flex">
-          <div class="col-md-6 col-lg-5 d-flex">
-            <div class="img-about img d-flex align-items-stretch">
-              <div class="overlay"></div>
-              <div
-                class="img d-flex align-self-stretch align-items-center"
-                style="background-image: url(static/images/mee.jpg)"
-              ></div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
-            <div class="row justify-content-start pb-3">
-              <div class="col-md-12 heading-section ftco-animate">
-                <h1 class="big">About</h1>
-                <h2 class="mb-4">About Me</h2>
-                {% for item in about %}
-                <p>{{item.description}}</p>
-                <ul class="about-info mt-4 px-md-0 px-2">
-                  <li class="d-flex">
-                    <span>Name:</span> <span>{{item.name}}</span>
-                  </li>
-                  <li class="d-flex">
-                    <span>Date of birth:</span> <span>{{item.birthday}}</span>
-                  </li>
-                  <li class="d-flex">
-                    <span>Address:</span>
-                    <span>{{item.address}}</span>
-                  </li>
-                  <li class="d-flex">
-                    <span>Email:</span> <span>{{item.email}}</span>
-                  </li>
-                  <li class="d-flex">
-                    <span>Cellphone:</span> <span>{{item.cellphone}}</span>
-                  </li>
-                  <li class="d-flex">
-                    <span>Phone: </span> <span>{{item.phone_number}}</span>
-                  </li>
-                </ul>
               </div>
-            </div>
-            <div class="counter-wrap ftco-animate d-flex mt-md-3">
-              <div class="text">
-                <!-- <p class="mb-4">
-                  <span class="number" data-number="20">0</span>
-                  <span>Project complete</span>
-                </p> -->
-                <p>
-                  <a href="{% url 'download_cv' item.id %}" class="btn btn-primary py-3 px-3"
-                    >My resume</a
-                  >
-                </p>
-                {% endfor %}
+              <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                  <strong>Email:</strong>
+                  <p>{{about.email}}</p>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ftco-section ftco-no-pb" id="resume-section">
-      <div class="container">
-        <div class="row justify-content-center pb-5">
-          <div class="col-md-10 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Resume</h1>
-            <h2 class="mb-4">Resume</h2>
-            <p></p>
-          </div>
-        </div>
-        <div class="row" style="display: flex; flex-wrap: wrap">
-          {% for item in resum %}
-          <div class="col-md-6">
-            <div class="resume-wrap ftco-animate">
-              <span class="date">{{item.year}}</span>
-              <h2>{{item.diplome_or_post}}</h2>
-              <span class="position">{{item.entreprise_or_school}}</span>
-              <p class="mt-4">{{item.short_resume}}</p>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-
-        <div class="row justify-content-center mt-5">
-          <div class="col-md-6 text-center ftco-animate">
-                      {% for item in about %}
-            <p><a href="https://bold.pro/my/yannclovis-assiri" class="btn btn-primary py-4 px-5">My resume in detail</a></p>
-          {% endfor %}
-          
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ftco-section" id="services-section">
-      <div class="container">
-        <div class="row justify-content-center py-5 mt-5">
-          <div class="col-md-12 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Services</h1>
-            <h2 class="mb-4">Services</h2>
-            <p>
-              Do not hesitate to contact me for my services!
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          {% for item in serv %}
-
-          <div class="col-md-4 text-center d-flex ftco-animate">
-            <a href="#" class="services-1">
-              <span class="icon">
-                <i class="{{item.icon}}"></i>
-              </span>
-              <div class="desc">
-                <h3 class="mb-5">{{item.service_name}}</h3>
+              <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                  <strong>Phone:</strong>
+                  <p>{{about.phone_number}}</p>
+                </div>
               </div>
-            </a>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
-
-    <section class="ftco-section" id="skills-section">
-      <div class="container">
-        <div class="row justify-content-center pb-5">
-          <div class="col-md-12 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Skills</h1>
-            <h2 class="mb-4">My Skills</h2>
-            <p>
-            Let me show you all my skills !
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          {% for item in skil %}
-
-          <div class="col-md-6 animate-box">
-            <div class="progress-wrap ftco-animate">
-              <h3>{{item.title}}</h3>
-              <div class="progress">
-                <div
-                  class="progress-bar color-1"
-                  role="progressbar"
-                  aria-valuenow="{{item.percentage}}"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                  style="width: {{item.percentage}}%"
-                >
-                  <span>{{item.percentage}}%</span>
+              <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <strong>Location:</strong>
+                  <p>{{about.address}}</p>
                 </div>
               </div>
             </div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
-
-    <section class="ftco-section ftco-project" id="projects-section">
-      <div class="container">
-        <div class="row justify-content-center pb-5">
-          <div class="col-md-12 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Catalog</h1>
-            <h2 class="mb-4">Catalog</h2>
             <p>
-            Learn my history !
-            </p>
-          </div>
-        </div>
-        <div class="row">
-    {% for item in proj %}
-        {% if forloop.counter0|divisibleby:2 %}
-            <div class="col-md-4">
-        {% else %}
-            <div class="col-md-8">
-        {% endif %}
-
-        <div
-            class="project img ftco-animate d-flex justify-content-center align-items-center"
-            style="background-image: url({{ item.image.url }})"
-        >
-            <div class="overlay"></div>
-            <div class="text text-center p-4">
-              <a href="{{item.image.url}}">
-                <h5>
-
-                  {{ item.project_name }}
-                </h5>
-                </a> 
-                <!-- <span>Web Design</span> -->
-            </div>
-        </div>
-
-    </div>
-
-    {% if forloop.counter0|divisibleby:2 or forloop.last %}
-        <br />
-    {% endif %}
-    {% endfor %}
-</div>
-      </div>
-    </section>
-{% if blogg %}
-    <section class="ftco-section" id="blog-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5 pb-5">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Blog</h1>
-            <h2 class="mb-4">My Blog</h2>
-            <p>
-              Discover some  of my thoughts and experiences.
-            </p>
-          </div>
-        </div>
-        <div class="row d-flex">
-          {% for  item in blogg %}
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry justify-content-end">
               <a
-                href="{{item.image.url}}"
-                class="block-20"
-                style="background-image: url('{{item.image.url}}')"
+                href="{% url 'download_cv' about.id %}"
+                class="btn btn-primary py-3 px-3"
               >
+                My resume
               </a>
-              <div class="text mt-3 float-right d-block">
-                <div class="d-flex align-items-center mb-3 meta">
-                  <p class="mb-0">
-                    <span class="mr-2">{{item.date}}</span>
-                    <a href="#" class="mr-2">Admin</a>
-                    <a href="#" class="meta-chat"
-                      ><span class="icon-chat"></span> 3</a
-                    >
-                  </p>
-                </div>
-                <h3 class="heading">
-                  <a href="{% url 'single_blog' item.id %}"
-                    >{{item.title}}</a
-                  >
-                </h3>
-                <p>
-                 {{item.short_description}}
-                </p>
+            </p>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>My Resume</h2>
+        </div>
+        <h3>Education</h3>
+        <div class="resume-container">
+          {% for item in resum %}
+          <div class="resume-column">
+            <div class="resume-item">
+              <h3>{{item.diplome_or_post}}</h3>
+              <span class="date">{{item.year}}</span>
+              <p>{{item.entreprise_or_school}}</p>
+              <p>{{item.short_resume}}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>My Services</h2>
+        </div>
+        <div class="services-container">
+          {% for item in serv %}
+          <div class="service-item">
+            <i class="{{item.icon}}"></i>
+            <h3>{{item.service_name}}</h3>
+            <p>
+              Building responsive and accessible websites and web applications
+              using modern technologies.
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>My Skills</h2>
+        </div>
+        <div class="skills-container">
+          {% for item in skil %}
+          <div class="skills-column">
+            <div class="skill-item">
+              <div class="skill-info">
+                <span>{{item.title}}</span>
+                <span>{{item.percentage}}%</span>
+              </div>
+              <div class="skill-bar">
+                <div
+                  class="skill-progress"
+                  style="width: {{item.percentage}}%"
+                ></div>
               </div>
             </div>
           </div>
@@ -505,149 +221,150 @@
         </div>
       </div>
     </section>
-        {% endif %}
 
-
-   
-<section
-  class="ftco-section ftco-hireme img margin-top"
-  style="background-image: url(static/images/0F7A1178.jpg);"
->
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-7 ftco-animate text-center">
-        <h2>I'm <span>Available</span> for freelancing</h2>
-        <!-- <p class="mb-0">
-          <a
-            href="https://bold.pro/my/yannclovis-assiri"
-            class="btn btn-primary py-3 px-5" 
-            target="_blank">
-            My resume in Detail
-          </a>
-        </p> -->
-      </div>
-    </div>
-  </div>
-</section>
-
-    <section
-      class="ftco-section contact-section ftco-no-pb"
-      id="contact-section"
-    >
+    <!-- Projects Section -->
+    <section id="projects-section">
       <div class="container">
-        <div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Contact</h1>
-            <h2 class="mb-4">Contact Me</h2>
-            <p>
-          How  to reach me ?
-            </p>
-          </div>
+        <div class="section-title">
+          <h2>My Projects</h2>
         </div>
-
-        <div class="row d-flex contact-info mb-5">
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-            <div class="align-self-stretch box p-4 text-center">
-              <div
-                class="icon d-flex align-items-center justify-content-center"
-              >
-                <span class="icon-map-signs"></span>
-              </div>
-              <h3 class="mb-4">Address</h3>
-              <p>{{contac.address}}</p>
+        <div class="projects-container">
+          <div class="project-item">
+            <div class="project-img">
+              <img
+                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80"
+                alt="E-commerce Platform"
+              />
             </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-            <div class="align-self-stretch box p-4 text-center">
-              <div
-                class="icon d-flex align-items-center justify-content-center"
-              >
-                <span class="icon-phone2"></span>
-              </div>
-              <h3 class="mb-4">Contact Number</h3>
+            <div class="project-content">
+              <h3>E-commerce Platform</h3>
               <p>
-                <div class="link_wrapper">
-                <a class="a" href="tel:+91{{contac.contact_number}}"
-                  >{{contac.contact_number}}</a
-                >
-                 <div class="icons">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
-        <path d="M265.17 125.577l-80-80c-4.88-4.88-12.796-4.88-17.677 0-4.882 4.882-4.882 12.796 0 17.678l58.66 58.66H12.5c-6.903 0-12.5 5.598-12.5 12.5 0 6.903 5.597 12.5 12.5 12.5h213.654l-58.66 58.662c-4.88 4.882-4.88 12.796 0 17.678 2.44 2.44 5.64 3.66 8.84 3.66s6.398-1.22 8.84-3.66l79.997-80c4.883-4.882 4.883-12.796 0-17.678z"/>
-      </svg>
-    </div>
-    </div>
+                A full-stack e-commerce solution with React frontend and Node.js
+                backend.
               </p>
+              <a href="#" class="btn">View Project</a>
             </div>
-            
           </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-            <div class="align-self-stretch box p-4 text-center">
-              <div
-                class="icon d-flex align-items-center justify-content-center"
-              >
-                <span class="icon-paper-plane"></span>
-              </div>
-              <h3 class="mb-4">Email Address</h3>
+          <div class="project-item">
+            <div class="project-img">
+              <img
+                src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+                alt="Mobile App"
+              />
+            </div>
+            <div class="project-content">
+              <h3>Fitness Tracker App</h3>
               <p>
-               <div class="wrapper"></div>
-  <div class="link_wrapper">
-    <a class="a" href="mailto:{{contac.mon_email}}">{{contac.mon_email}}</a>
-    <div class="icons">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
-        <path d="M265.17 125.577l-80-80c-4.88-4.88-12.796-4.88-17.677 0-4.882 4.882-4.882 12.796 0 17.678l58.66 58.66H12.5c-6.903 0-12.5 5.598-12.5 12.5 0 6.903 5.597 12.5 12.5 12.5h213.654l-58.66 58.662c-4.88 4.882-4.88 12.796 0 17.678 2.44 2.44 5.64 3.66 8.84 3.66s6.398-1.22 8.84-3.66l79.997-80c4.883-4.882 4.883-12.796 0-17.678z"/>
-      </svg>
-    </div>
-  </div>
-  
-</div>
-
-</p>
-</div>
-<div class="col-md-6 col-lg-3 d-flex ftco-animate">
-            <div class="align-self-stretch box p-4 text-center">
-              <div
-                class="icon d-flex align-items-center justify-content-center"
-              >
-                <span class="icon-map-signs"></span>
-              </div>
-              <h3 class="mb-4">Address</h3>
-              <p>{{contac.address}}</p>
+                A React Native application for tracking workouts and nutrition.
+              </p>
+              <a href="#" class="btn">View Project</a>
             </div>
           </div>
+          <div class="project-item">
+            <div class="project-img">
+              <img
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80"
+                alt="Dashboard"
+              />
+            </div>
+            <div class="project-content">
+              <h3>Analytics Dashboard</h3>
+              <p>
+                A data visualization dashboard for business metrics and
+                analytics.
+              </p>
+              <a href="#" class="btn">View Project</a>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="row no-gutters block-9">
-          <div class="col-md-6 order-md-last d-flex">
-            <form
-              action="{% url 'contact' %}"
-              method="post"
-              class="bg-light p-4 p-md-5 contact-form"
-            >
+    <!-- Blog Section -->
+    <section id="blog-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>My Blog</h2>
+        </div>
+        <div class="blog-container">
+          {% for item in proj %}
+          <div class="blog-item">
+            <div class="blog-img">
+              <img src="{{ item.image.url }}" alt="Web Development" />
+            </div>
+            <div class="blog-content">
+              <span class="date">{{ item.date_issue }}</span>
+              <h3>{{ item.project_name }}</h3>
+              <a href="#" class="btn">Read More</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Contact Me</h2>
+        </div>
+        <div class="contact-container">
+          <div class="contact-info">
+            <h3>Get In Touch</h3>
+            <p>
+              Feel free to contact me for any work or suggestions. I'm always
+              open to discussing new projects and opportunities.
+            </p>
+            <br />
+            <div class="contact-info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h4>Location</h4>
+                <p>{{contac.address}}</p>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h4>Email</h4>
+                <p>{{contac.mon_email}}</p>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <i class="fas fa-phone"></i>
+              <div>
+                <h4>Phone</h4>
+                <p>{{contac.contact_number}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="contact-form">
+            <h3>Send Message</h3>
+            <form id="contactForm" action="{% url 'contact' %}" method="post">
               {% csrf_token %}
               <div class="form-group">
                 <input
                   type="text"
-                  class="form-control"
-                  name="name"
                   placeholder="Your Name"
+                  required
+                  name="name"
                 />
               </div>
               <div class="form-group">
                 <input
                   type="email"
-                  class="form-control"
-                  name="email"
                   placeholder="Your Email"
+                  required
+                  name="email"
                 />
               </div>
               <div class="form-group">
                 <input
                   type="text"
-                  name="subject"
-                  class="form-control"
                   placeholder="Subject"
+                  required
+                  name="subject"
                 />
               </div>
               <div class="form-group">
@@ -658,131 +375,23 @@
                   rows="7"
                   class="form-control"
                   placeholder="Message"
+                  required
                 ></textarea>
               </div>
-              <div class="form-group">
-                <input
-                  type="submit"
-                  value="Send Message"
-                  class="btn btn-primary py-3 px-5"
-                />
-              </div>
-              
+              <button type="submit" class="btn">Send Message</button>
             </form>
-               <!-- Modal Structure -->
-<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="messageModalLabel">Message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <ul class="messages">
-          {% for message in messages %}
-            <li class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
-          {% endfor %}
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Loading Modal -->
-<div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content" style="background: transparent; border: none;">
-      <div class="modal-body text-center">
-        <div class="spinner-border text-warning" role="status" style="width: 3rem; height: 3rem;">
-          <span class="sr-only">Loading...</span>
-        </div>
-        <h5 style="color: white;">Please wait / Veuillez patienter...</h5>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Sélectionner le formulaire
-    const form = document.querySelector('form');
-
-    // Ajouter un écouteur d'événement de soumission au formulaire
-    form.addEventListener('submit', function(event) {
-      // Empêche l'utilisateur de soumettre plusieurs fois (désactiver le bouton)
-      const submitButton = form.querySelector('[type="submit"]');
-      submitButton.disabled = true;
-
-      // Affiche la boîte de dialogue de chargement
-      $('#loadingModal').modal('show');
-
-      // Définir un délai de 20 secondes pour masquer le modal de chargement
-      setTimeout(() => {
-        // Masquer le modal de chargement après 10 secondes
-        $('#loadingModal').modal('hide');
-        // Vérifier et afficher les messages s'il y en a
-        checkAndShowMessageModal();
-      }, 10000);
-    });
-
-    // Fonction pour vérifier les messages après la soumission
-    function checkAndShowMessageModal() {
-      const messagesList = document.querySelector(".messages");
-      if (messagesList && messagesList.children.length > 0) {
-        // Affiche le modal de messages
-        $('#messageModal').modal('show');
-      }
-    }
-
-    // Vérification après chargement complet de la page pour les messages existants
-    window.addEventListener('load', checkAndShowMessageModal);
-  });
-</script>
-
-
-          </div>
-    
-
-          <div class="col-md-6 d-flex">
-            <div
-              class="img"
-              style="background-image: url(static/images/a.jpg)"
-            ></div>
           </div>
         </div>
       </div>
     </section>
 
-    <footer class="ftco-footer ftco-section">
+    <!-- Footer -->
+    <footer>
       <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="ftco-footer-widget mb-4">
-            
-              <ul
-                class="social-icons ftco-footer-social list-unstyled float-md-center float-center mt-5"
-              >
-              {% for social in socialinks %}
-                <li class="ftco-animate">
-                 <a href="{{social.link}}" class="icon-{{social.name}}"></a>
-                </li>
-              
-              {% endfor %}
-              </ul>
-            </div>
-          </div>
-         
-        </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <div class="wrap" id="thewrap">
-            <button class="button" id="thebtn">You are the {{visitor_rank}}th visitor!</a>
-       </div>
-          </div>
+        <div class="social-links">
+          {% for social in socialinks %}
+          <a href="{{social.link}}"><i class="{{social.name}}"></i></a>
+          {% endfor %}
         </div>
         <div class="row">
           <div class="col-md-12 text-center">
@@ -791,66 +400,52 @@
               <script>
                 document.write(new Date().getFullYear());
               </script>
-              All rights reserved | 
+              All rights reserved |
               <i class="icon-heart color-danger" aria-hidden="true"></i> by
-              <a href="#about-section" >Yann Clovis Assiri ❤️</a>
+              <a href="#about-section">Yann Clovis Assiri ❤️</a>
             </p>
           </div>
         </div>
       </div>
     </footer>
 
-    <!-- loader -->
-    <div id="ftco-loader" class="show fullscreen">
-      <svg class="circular" width="48px" height="48px">
-        <circle
-          class="path-bg"
-          cx="24"
-          cy="24"
-          r="22"
-          fill="none"
-          stroke-width="4"
-          stroke="#eeeeee"
-        />
-        <circle
-          class="path"
-          cx="24"
-          cy="24"
-          r="22"
-          fill="none"
-          stroke-width="4"
-          stroke-miterlimit="10"
-          stroke="#F96D00"
-        />
-      </svg>
-    </div>
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
-    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
-    <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
-    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
-    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
-    <script src="{% static 'js/aos.js' %}"></script>
-    <script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
-    <script src="{% static 'js/scrollax.min.js' %}"></script>
-
-    <script src="{% static 'js/main.js' %}"></script>
     <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    var navLinks = document.querySelectorAll(".navbar-nav .nav-link");
-    var navCollapse = document.getElementById("ftco-nav");
+      // Mobile Navigation Toggle
+      const hamburger = document.querySelector(".hamburger");
+      const navMenu = document.querySelector(".nav-menu");
 
-    navLinks.forEach(function (link) {
-      link.addEventListener("click", function () {
-        navCollapse.classList.remove("show");
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
       });
-    });
-  });
-</script>
 
+      document.querySelectorAll(".nav-link").forEach((n) =>
+        n.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navMenu.classList.remove("active");
+        })
+      );
 
+      // Form Submission
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("Thank you for your message! I'll get back to you soon.");
+          this.reset();
+        });
+
+      // Animate skill bars on scroll
+      window.addEventListener("scroll", function () {
+        const skillBars = document.querySelectorAll(".skill-progress");
+        skillBars.forEach((bar) => {
+          const position = bar.getBoundingClientRect().top;
+          const screenPosition = window.innerHeight / 1.3;
+          if (position < screenPosition) {
+            bar.style.width = bar.style.width;
+          }
+        });
+      });
+    </script>
   </body>
 </html>

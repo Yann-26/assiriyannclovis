@@ -8,21 +8,6 @@ from django.http import FileResponse, Http404
 # Create your views here.
 
 def index(request):
-     # Vérifiez si c'est la première visite de l'utilisateur
-    if not request.session.get('is_returning_visitor'):
-        # L'utilisateur est nouveau, donc on incrémente le compteur
-        counter, created = VisitorCounter.objects.get_or_create(id=1)
-        counter.total_visitors += 1
-        counter.save()
-
-        # Marquer l'utilisateur comme "déjà venu"
-        request.session['is_returning_visitor'] = True
-
-        # Récupérer le rang de l'utilisateur
-        visitor_rank = counter.total_visitors
-    else:
-        # Récupérer le rang actuel pour les visiteurs déjà comptés
-        visitor_rank = VisitorCounter.objects.get(id=1).total_visitors
 
     about = about_me.objects.all()
     resum  = resume.objects.all()
@@ -48,7 +33,7 @@ def index(request):
         'land' : land,
         'catal' : catal,
         'socialinks' : socialinks,
-        'visitor_rank': visitor_rank,
+        
 
      }
     return render(request, 'index.html', datas)

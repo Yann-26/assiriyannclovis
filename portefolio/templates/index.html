@@ -229,53 +229,35 @@
           <h2>My Projects</h2>
         </div>
         <div class="projects-container">
+          {% for item in projects %}
           <div class="project-item">
             <div class="project-img">
-              <img
-                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80"
-                alt="E-commerce Platform"
-              />
+              <img src="{{ item.featured_image.url }}" alt="{{ item.title }}" />
             </div>
             <div class="project-content">
-              <h3>E-commerce Platform</h3>
-              <p>
-                A full-stack e-commerce solution with React frontend and Node.js
-                backend.
-              </p>
-              <a href="#" class="btn">View Project</a>
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.short_description }}</p>
+              <a href="{% url 'project_detail' item.slug %}" class="btn"
+                >View Project</a
+              >
             </div>
           </div>
-          <div class="project-item">
-            <div class="project-img">
-              <img
-                src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
-                alt="Mobile App"
-              />
-            </div>
-            <div class="project-content">
-              <h3>Fitness Tracker App</h3>
-              <p>
-                A React Native application for tracking workouts and nutrition.
-              </p>
-              <a href="#" class="btn">View Project</a>
-            </div>
-          </div>
-          <div class="project-item">
-            <div class="project-img">
-              <img
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80"
-                alt="Dashboard"
-              />
-            </div>
-            <div class="project-content">
-              <h3>Analytics Dashboard</h3>
-              <p>
-                A data visualization dashboard for business metrics and
-                analytics.
-              </p>
-              <a href="#" class="btn">View Project</a>
-            </div>
-          </div>
+          {% endfor %}
+        </div>
+        <!-- Pagination -->
+        <div class="pagination">
+          {% if projects.has_previous %}
+          <a href="?page={{ projects.previous_page_number }}">Previous</a>
+          {% endif %}
+
+          <span
+            >Page {{ projects.number }} of {{ projects.paginator.num_pages
+            }}</span
+          >
+
+          {% if projects.has_next %}
+          <a href="?page={{ projects.next_page_number }}">Next</a>
+          {% endif %}
         </div>
       </div>
     </section>

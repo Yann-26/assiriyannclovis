@@ -3,7 +3,6 @@ from tinymce.models import HTMLField
 
 # Create your models here.
 class about_me(models.Model):
-  
     name = models.CharField(max_length=50)
     birthday = models.DateField()
     address = models.CharField(max_length=50)
@@ -79,21 +78,6 @@ class project(models.Model):
     def __str__(self) :
         return self.project_name
     
-class blog(models.Model):
-    title = models.CharField(max_length=50)
-    
-    date = models.DateField()
-    short_description = models.TextField()
-    description = HTMLField()
-    image  = models.ImageField(upload_to='blog/')
-
-     # STANDARDS 
-    status  = models.BooleanField(default=True)
-    date_add = models.DateTimeField(auto_now_add=True)
-    date_update = models.DateTimeField(auto_now=True)
-
-    def __str__(self) :
-        return self.title
     
 class testi_cards(models.Model):
     number = models.IntegerField()

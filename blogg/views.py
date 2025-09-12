@@ -1,12 +1,10 @@
 # views.py
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView
 from django.db.models import Q, F
-from django.utils import timezone
-from django.contrib import messages
-from .models import Project, Blog, Category, Tag, ProjectView
-import json
+from .models import Project, ProjectView
+
 
 
 class ProjectDetailView(DetailView):
@@ -191,57 +189,3 @@ def project_demo_proxy(request, slug):
     )
 
 
-
-class BlogListView(ListView):
-    model = Blog
-    template_name = "portfolio/blog_list.html"
-    context_object_name = "blogs"
-    paginate_by = 10
-
-    def get_queryset(self):
-        queryset = Blog.objects.filter(status=True).prefetch_related(
-            "tags", "category", "author"
-        )
-
-        # Filter by category
-        category = self.request.GET.get("category")
-        if category:
-            queryset = queryset.filter(category__slug=category)
-
-        # Filter by tag
-        tag = self.request.GET.get("tag")
-        if tag:
-            queryset = queryset.filter(tags__slug=tag)
-
-        # Filter by blog type
-        blog_type = self.request.GET.get("type")
-        if blog_type:
-            queryset = queryset.filter(blog_type=blog_type)
-
-        # Search
-        search = self.request.GET.get("search")
-        if search:
-            queryset = queryset.filter(
-                Q(title__icontains=search)
-                | Q(short_description__icontains=search)
-                | Q(excerpt__icontains=search)
-            )
-
-        return queryset.order_by("-published_date", "-date_add")
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context.update(
-            {
-                "categories": Category.objects.filter(status=True),
-                "tags": Tag.objects.filter(status=True),
-                "blog_types": Blog.BLOG_TYPES,
-                "featured_posts": Blog.objects.filter(is_featured=True, status=True)[
-                    :3
-                ],
-                "recent_posts": Blog.objects.filter(status=True)[:5],
-            }
-        )
-
-        return context

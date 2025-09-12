@@ -1,4 +1,5 @@
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
+from django.db.models import Q, F
 from .models import (
     about_me,
     resume,
@@ -9,7 +10,7 @@ from .models import (
     catalog,
     contact,
     SocialLink,
-    project,
+    Blog,
 )
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -78,7 +79,7 @@ class index(ListView):
                 "contac": get_object_or_404(contact, id=1),
                 "land": landing.objects.all(),
                 "catal": catalog.objects.all(),
-                "proj": project.objects.all(),
+                "proj": Blog.objects.all(),
                 "socialinks": SocialLink.objects.all(),
                 "categories": Category.objects.filter(status=True),
                 "tags": Tag.objects.filter(status=True),
@@ -134,3 +135,37 @@ def send_contact(request):
         messages.success(request, "Votre message a été envoyé avec succès")
         messages.success(request, "Your message has been sent successfully !")
         return redirect("/")
+
+
+def blog_details(request, slug):
+    # Récupérer le blog par slug
+    blog = get_object_or_404(
+        Blog.objects.prefetch_related("tags", "category"),  # supprimé "images"
+        slug=slug,
+        status=True,
+        is_published=True,
+    )
+
+    # Incrémenter le nombre de vues
+    Blog.objects.filter(pk=blog.pk).update(view_count=F("view_count") + 1)
+
+    # Articles liés (même catégorie ou mêmes tags)
+    related_blogs = (
+        Blog.objects.filter(status=True, is_published=True)
+        .exclude(pk=blog.pk)
+        .filter(Q(category=blog.category) | Q(tags__in=blog.tags.all()))
+        .distinct()[:3]
+    )
+
+    context = {
+        "blog": blog,
+        "related_blogs": related_blogs,
+        # Décommente ceci si tu ajoutes un modèle BlogImage avec related_name="images"
+        # "blog_images": blog.images.filter(status=True).order_by("order"),
+        "meta_title": f"{blog.title} - Blog Details",
+        "meta_description": blog.meta_description or blog.excerpt,
+        "meta_keywords": blog.meta_keywords,
+        "og_image": blog.featured_image.url if blog.featured_image else None,
+    }
+
+    return render(request, "blog_details.html", context)

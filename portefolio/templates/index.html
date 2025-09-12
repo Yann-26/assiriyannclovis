@@ -102,7 +102,7 @@
         </div>
         <div class="about-content">
           <div class="about-img">
-            <img src="static/images/mee.jpg" alt="Yann Clovis" />
+            <img src="static/images/meee.jpg" alt="Yann Clovis" />
           </div>
           {% for about in about %}
           <div class="about-text">
@@ -138,6 +138,7 @@
                 </div>
               </div>
             </div>
+            <br>
             <p>
               <a
                 href="{% url 'download_cv' about.id %}"
@@ -244,22 +245,6 @@
           </div>
           {% endfor %}
         </div>
-        <!-- Pagination -->
-        <div class="pagination">
-          {% if projects.has_previous %}
-          <a href="?page={{ projects.previous_page_number }}">Previous</a>
-          {% endif %}
-
-          <span
-            >Page {{ projects.number }} of {{ projects.paginator.num_pages
-            }}</span
-          >
-
-          {% if projects.has_next %}
-          <a href="?page={{ projects.next_page_number }}">Next</a>
-          {% endif %}
-        </div>
-      </div>
     </section>
 
     <!-- Blog Section -->
@@ -272,12 +257,12 @@
           {% for item in proj %}
           <div class="blog-item">
             <div class="blog-img">
-              <img src="{{ item.image.url }}" alt="Web Development" />
+              <img src="{{ item.featured_image.url }}" alt="{{item.project_name}}" />
             </div>
             <div class="blog-content">
               <span class="date">{{ item.date_issue }}</span>
               <h3>{{ item.project_name }}</h3>
-              <a href="#" class="btn">Read More</a>
+              <a href="{% url 'blog_details' item.slug %}" class="btn">Read More</a>
             </div>
           </div>
           {% endfor %}

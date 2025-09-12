@@ -450,7 +450,7 @@ header.scrolled {
 
 .about-text p {
     margin-bottom: var(--space-md);
-    font-size: 1.1rem;
+    font-size: 0.7rem;
 }
 
 .about-info {
